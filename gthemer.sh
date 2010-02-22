@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# Filename:    gthemer.sh
+# Description: Runs a command with a different GTK theme
+# Maintainer:  Jeremy Cantrell <jmcantrell@gmail.com>
+
+# I wrote this because I prefer dark GTK themes, and because some people write
+# software as if everyone uses light themes. In those cases, I want that app
+# to use a different theme.
+
+# IMPORTS {{{1
+
+source bashful-messages
+
+# FUNCTIONS {{{1
+
+gtk_theme_file() #{{{2
+{
+    gtk_theme_files | grep "^$THEME:" | awk -F: '{print $2}'
+}
+
+gtk_theme_list() #{{{2
+{
+    gtk_theme_files | awk -F: '{print $1}' | sort -u
+}
+
+gtk_theme_files() #{{{2
+{
+    for dir in "${GTK_THEME_DIRS[@]}"; do
+        [[ -d $dir ]] || continue
+        find "$dir" -maxdepth 1 -mindepth 1 -type d |
+        while read -r; do
+            gtkrc=$REPLY/gtk-2.0/gtkrc
+            [[ -f $gtkrc ]] && echo "$(basename "$REPLY"):$gtkrc"
+        done
+    done
+}
+
+gtk_theme_change() #{{{2
+{
+    GTK2_RC_FILES=$(gtk_theme_file) "$@"
+}
+
+# VARIABLES {{{1
+
+SCRIPT_NAME=$(basename "$0" .sh)
+SCRIPT_USAGE="Changes the GTK theme for a single command."
+SCRIPT_OPTIONS="
+-T THEME    Use THEME for the GTK theme.
+-L          List available GTK themes.
+-h          Display this help message.
+"
+
+GTK_THEME_DIRS=(
+    $HOME/.themes
+    /usr/local/share/themes
+    /usr/share/themes
+    )
+
+# COMMAND-LINE OPTIONS {{{1
+
+unset OPTIND
+while getopts ":hLT:" option; do
+    case $option in
+        T)
+            ACTION=change
+            THEME=$OPTARG
+            ;;
+
+        L) ACTION=list ;;
+
+        h) usage_exit 0 ;;
+        *) usage_exit 1 ;;
+    esac
+done && shift $(($OPTIND - 1))
+
+#}}}1
+
+case $ACTION in
+    change) gtk_theme_change "$@" ;;
+    list)   gtk_theme_list        ;;
+
+    *) usage_exit 1 ;;
+esac
