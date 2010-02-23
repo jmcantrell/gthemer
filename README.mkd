@@ -15,8 +15,3 @@ To install for everyone:
 Once installed, to get help with basic usage and available options:
 
     gthemer -h
-
-To get more extensive documentation (requires
-[shdoc](http://github.com/jmcantrell/shdoc)):
-
-    shdoc gthemer [TOPIC]
