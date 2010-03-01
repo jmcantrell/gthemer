@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Filename:    gthemer.sh
-# Description: Runs a command with a different GTK theme
-# Maintainer:  Jeremy Cantrell <jmcantrell@gmail.com>
+# Filename:      gthemer.sh
+# Description:   Runs a command with a different GTK theme
+# Maintainer:    Jeremy Cantrell <jmcantrell@gmail.com>
+# Last Modified: Mon 2010-03-01 00:16:54 (-0500)
 
 # I wrote this because I prefer dark GTK themes, and because some people write
 # software as if everyone uses light themes. In those cases, I want that app
