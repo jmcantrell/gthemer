@@ -3,7 +3,7 @@
 # Filename:      gthemer.sh
 # Description:   Runs a command with a different GTK theme
 # Maintainer:    Jeremy Cantrell <jmcantrell@gmail.com>
-# Last Modified: Wed 2010-04-07 16:58:37 (-0400)
+# Last Modified: Thu 2010-04-22 22:08:24 (-0400)
 
 # I wrote this because I prefer dark GTK themes, and because some people write
 # software as if everyone uses light themes. In those cases, I want that app
@@ -70,8 +70,8 @@ while getopts ":hLT:" option; do
 
         L) ACTION=list ;;
 
-        h) usage_exit 0 ;;
-        *) usage_exit 1 ;;
+        h) usage 0 ;;
+        *) usage 1 ;;
     esac
 done && shift $(($OPTIND - 1))
 
@@ -81,5 +81,5 @@ case $ACTION in
     change) gtk_theme_change "$@" ;;
     list)   gtk_theme_list        ;;
 
-    *) usage_exit 1 ;;
+    *) usage 1 ;;
 esac
