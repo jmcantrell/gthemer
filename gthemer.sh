@@ -3,7 +3,7 @@
 # Filename:      gthemer.sh
 # Description:   Runs a command with a different GTK theme
 # Maintainer:    Jeremy Cantrell <jmcantrell@gmail.com>
-# Last Modified: Thu 2010-06-17 23:21:22 (-0400)
+# Last Modified: Sun 2010-09-19 20:37:00 (-0400)
 
 # I wrote this because I prefer dark GTK themes, and because some people write
 # software as if everyone uses light themes. In those cases, I want that app
@@ -46,7 +46,7 @@ gtk_theme_change() #{{{2
 
 SCRIPT_NAME=$(basename "$0" .sh)
 SCRIPT_USAGE="Changes the GTK theme for a single command."
-SCRIPT_OPTS="
+SCRIPT_OPTIONS="
 -T THEME    Use THEME for the GTK theme.
 -L          List available GTK themes.
 -h          Display this help message.
