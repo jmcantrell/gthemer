@@ -1,4 +1,4 @@
-GThemer uns a command with a different GTK theme.
+GThemer runs a command with a different GTK theme.
 
 Installation
 ------------
